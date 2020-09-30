@@ -1,36 +1,18 @@
 import React, { Component } from "react"
 import { Link } from "gatsby"
+import NameList from '../components/NameList.js';
 
 
 
-class IndexPage extends Component {
+function IndexPage() {
 
-  constructor() {
-    super()
-
-    this.state = {
-      names: []
-    }
-  }
-
-  componentDidMount() {
-
-    fetch('https://api.abalin.net/today')
-      .then(res => res.json())
-      .then((nameData) => {
-        const names = nameData.data.namedays;
-        this.setState({names});
-      })
-      .catch(err => console.log(err));
-  }
-
-  render() {
-    return (
-      <>
-        <h1>Today's Name Days</h1>
-      </>
-    )
-  }
+  return (
+    <>
+      <h1>Today's Name Days</h1>
+      <NameList />
+    </>
+  )
+  
 }
 
 export default IndexPage
