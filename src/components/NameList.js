@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NameItem from './NameItem.js';
 
 class NameList extends Component {
 
@@ -23,7 +24,7 @@ class NameList extends Component {
       }
 
     nameTags() {
-        return Object.entries(this.state.names).map(([key, value]) => <p key={key}>{key}: {value}</p>);
+        return Object.entries(this.state.names).map(([key, value]) => <NameItem key={key} country={key} names={value}/>);
     }
     
     render() {
@@ -31,6 +32,7 @@ class NameList extends Component {
         return (
             <>
                 <p>Name list</p>
+                {/* <NameItem {...this.state.names} /> */}
                 {this.nameTags()}
             </>
         )
