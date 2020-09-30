@@ -1,22 +1,33 @@
-import React from "react"
+import React, { Component } from "react"
 import { Link } from "gatsby"
 
 
 
-class IndexPage {
+class IndexPage extends Component {
 
   constructor() {
     super()
 
     this.state = {
-      holidays: []
+      names: []
     }
+  }
+
+  componentDidMount() {
+
+    fetch('https://api.abalin.net/today')
+      .then(res => res.json())
+      .then((nameData) => {
+        const names = nameData.data.namedays;
+        this.setState({names});
+      })
+      .catch(err => console.log(err));
   }
 
   render() {
     return (
       <>
-        <h1>Estonian Holidays</h1>
+        <h1>Today's Name Days</h1>
       </>
     )
   }
