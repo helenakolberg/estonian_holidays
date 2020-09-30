@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 
 class NameList extends Component {
 
+    constructor() {
+        super()
+    
+        this.state = {
+          names: []
+        }
+
+        this.nameTags = this.nameTags.bind(this);
+      }
+
     componentDidMount() {
-
-        constructor() {
-            super()
-        
-            this.state = {
-              names: []
-            }
-          }
-
         fetch('https://api.abalin.net/today')
           .then(res => res.json())
           .then((nameData) => {
@@ -20,13 +21,17 @@ class NameList extends Component {
           })
           .catch(err => console.log(err));
       }
+
+    nameTags() {
+        return Object.entries(this.state.names).map(([key, value]) => <p key={key}>{key}: {value}</p>);
+    }
     
     render() {
 
         return (
             <>
                 <p>Name list</p>
-                {this.props.names}
+                {this.nameTags()}
             </>
         )
     }
